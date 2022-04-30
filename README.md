@@ -1,70 +1,22 @@
+ngOnInit(): void {
+    // read id sent by all component as /edit/id
+    // tslint:disable-next-line: no-string-literal
+    this.id = this.activatedRoute.snapshot.params['id'];
+    // make service call to get student object
+    this.service.getOneStudent(this.id).subscribe(
+      data => {
+      this.student = data;
+      console.log(this.student);
+    }, error => {
+      console.log(error);
+    });
+  }
 
-  
-  <h3>Register Student</h3>
-<form (ngSubmit)='updateStudent()'>
-    <!-- row#0 -->
-    <div class="row">
-        <div class="col-2">
-            <label>ID</label>
-        </div>
-        <div class="col-4">
-            <input type="text" [(ngModel)]="student.id" name="id" class="form-control" readonly/>
-        </div>
-    </div>
-    <!-- row#1 -->
-    <div class="row">
-        <div class="col-2">
-            <label>NAME</label>
-        </div>
-        <div class="col-4">
-            <input type="text" [(ngModel)]="student.name" name="name" class="form-control"/>
-        </div>
-    </div>
-
-    <!-- row#2 -->
-    <div class="row">
-        <div class="col-2">
-            <label>FEE</label>
-        </div>
-        <div class="col-4">
-            <input type="text" [(ngModel)]="student.fee" name="fee" class="form-control"/>
-        </div>
-    </div>
-
-    <!-- row#3 -->
-    <div class="row">
-        <div class="col-2">
-            <label>EMAIL</label>
-        </div>
-        <div class="col-4">
-            <input type="text" [(ngModel)]="student.email" name="email" class="form-control" readonly/>
-        </div>
-    </div>
-
-    <!-- row#4 -->
-    <div class="row">
-        <div class="col-2">
-            <label>COURSE</label>
-        </div>
-        <div class="col-4">
-            <select [(ngModel)]="student.course" name="course" class="form-control">
-                <option value="">-select-</option>
-                <option value="CORE">CORE</option>
-                <option value="ADV">ADV</option>
-                <option value="SPRING">SPRING</option>
-                <option value="BOOT">BOOT</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- row#5 -->
-    <div class="row">
-        <div class="col-2">
-            <label>ADDRESS</label>
-        </div>
-        <div class="col-4">
-            <textarea class="form-control" [(ngModel)]="student.addr" name="addr"></textarea>
-        </div>
-    </div>
-    <input type="submit" value="Update Student" class="btn btn-success"/>
-</form>
+  // tslint:disable-next-line: typedef
+  updateStudent() {
+    this.service.updateStudent(this.id, this.student)
+    .subscribe( data => {
+      console.log(data);
+      this.router.navigate(['all']);
+    });
+  }

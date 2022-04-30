@@ -1,12 +1,4 @@
-createStudent() {
-    this.service.createStudent(this.student)
-    .subscribe(data => {
-      this.message = data; // read message
-      this.student = new Student(); // clear form
-    }, error => {
-      console.log(error);
-    });
-  }
+
   
   <h3>Register Student</h3>
 <form (ngSubmit)='updateStudent()'>

@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <h3>Register Student</h3>
 <form (ngSubmit)="createStudent()">
     <!-- row#1 -->
@@ -58,4 +64,3 @@
     <input type="submit" value="Add Student" class="btn btn-success"/>
 </form>
 <span class="text-info">{{message}}</span>
-

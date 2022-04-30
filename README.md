@@ -20,3 +20,4 @@ ngOnInit(): void {
       this.router.navigate(['all']);
     });
   }
+  }
